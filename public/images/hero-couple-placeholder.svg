@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg" cx=".55" cy=".35" r=".85">
+      <stop offset="0" stop-color="#F6DFA8"/>
+      <stop offset=".45" stop-color="#C98A3D"/>
+      <stop offset="1" stop-color="#590018"/>
+    </radialGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FFF4D6" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#FFF4D6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <circle cx="500" cy="300" r="320" fill="url(#glow)"/>
+  <g fill="none" stroke="#FFF9F0" stroke-opacity=".35" stroke-width="2">
+    <circle cx="500" cy="420" r="150"/>
+    <circle cx="500" cy="420" r="190"/>
+    <circle cx="500" cy="420" r="230" stroke-dasharray="4 10"/>
+  </g>
+  <!-- Bride silhouette -->
+  <path d="M430 330a46 46 0 1 1 0.1 0Z" fill="#590018" opacity=".55"/>
+  <path d="M340 900c10-170 40-300 90-380 50 80 80 210 95 380Z" fill="#A20D35" opacity=".75"/>
+  <!-- Groom silhouette -->
+  <path d="M575 300a50 50 0 1 1 0.1 0Z" fill="#590018" opacity=".55"/>
+  <path d="M490 900c5-190 35-330 85-410 55 80 80 220 85 410Z" fill="#FFF0D6" opacity=".7"/>
+  <g fill="#FFF9F0" font-family="Georgia, serif" text-anchor="middle">
+    <text x="450" y="820" font-size="26" opacity=".9">Add the wedding photograph at</text>
+    <text x="450" y="856" font-size="22" opacity=".8">public/images/hero-couple.jpg</text>
+  </g>
+</svg>
