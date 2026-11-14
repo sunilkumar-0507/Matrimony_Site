@@ -41,6 +41,11 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -373,10 +378,19 @@ a.topbar__item:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(214, 168, 79, 0.25);
   transition: box-shadow 0.3s var(--ease);
+}
+/* Blur lives on a pseudo-element: backdrop-filter on .navbar itself would become the
+   containing block of the fixed mobile menu and break it */
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .navbar--scrolled {
   box-shadow: 0 8px 30px rgba(89, 0, 24, 0.1);
@@ -1395,9 +1409,6 @@ a.topbar__item:hover {
   .service-card__icon {
     margin-bottom: 0;
   }
-  .why__grid {
-    grid-template-columns: 1fr;
-  }
   .cta__inner {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1408,6 +1419,13 @@ a.topbar__item:hover {
   .cta__rings {
     max-width: 200px;
     order: -1;
+  }
+  .cta__floral,
+  .about-enquiry__floral {
+    display: none;
+  }
+  .cta {
+    padding: 64px 0;
   }
 }
 
@@ -1445,13 +1463,52 @@ a.topbar__item:hover {
   .about-enquiry {
     padding-top: 64px;
   }
+  .section-heading {
+    margin-bottom: 40px;
+  }
+  .service-card {
+    padding: 22px 18px;
+    column-gap: 16px;
+    align-items: start;
+  }
+  .service-card__icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+  }
+  .service-card h3 {
+    font-size: 17px;
+  }
+  .why__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .why-card {
+    padding: 22px 18px;
+    gap: 16px;
+  }
+  .why-card__icon {
+    width: 50px;
+    height: 50px;
+  }
   .enquiry-card {
-    padding: 32px 20px;
+    padding: 40px 20px 32px;
     border-radius: 20px;
   }
   .enquiry-card__corner {
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
+  }
+  .enquiry-card__corner--tl {
+    top: 14px;
+    left: 14px;
+  }
+  .enquiry-card__corner--br {
+    bottom: 14px;
+    right: 14px;
+  }
+  .enquiry-card__title {
+    font-size: 25px;
   }
   .field-row {
     grid-template-columns: 1fr;
@@ -1461,15 +1518,77 @@ a.topbar__item:hover {
   .field textarea {
     font-size: 16px; /* prevents iOS zoom on focus */
   }
+  .enquiry-success__actions .btn {
+    width: 100%;
+  }
+
+  /* Process: compact vertical timeline */
   .process__steps {
     grid-template-columns: 1fr;
+    row-gap: 0;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    column-gap: 18px;
+    text-align: left;
+    padding: 0 0 28px;
+  }
+  .process-step:last-child {
+    padding-bottom: 0;
+  }
+  .process-step__circle {
+    grid-row: span 2;
+    width: 72px;
+    height: 72px;
+    margin: 0;
+    box-shadow: 0 0 0 5px rgba(214, 168, 79, 0.14), var(--shadow-sm);
+  }
+  .process-step__circle svg {
+    width: 26px;
+    height: 26px;
+  }
+  .process-step__number {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    top: -2px;
+    right: -4px;
+  }
+  .process-step h3 {
+    font-size: 18px;
+    margin: 8px 0 4px;
   }
   .process-step__arrow {
+    display: block;
+    top: 82px;
+    bottom: 6px;
+    left: 36px;
+    right: auto;
+    transform: none;
+    width: 0;
+    border-left: 2px dashed rgba(214, 168, 79, 0.6);
+  }
+  .process-step__arrow::before,
+  .process-step__arrow svg {
     display: none;
+  }
+
+  .footer {
+    padding-top: 56px;
   }
   .footer__grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  .footer__links {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+  }
+  .footer__bottom {
+    padding-bottom: 84px; /* keep clear of the floating WhatsApp button */
   }
   .footer__bottom .container {
     justify-content: center;
